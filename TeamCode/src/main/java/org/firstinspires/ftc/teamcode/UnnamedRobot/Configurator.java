@@ -1,18 +1,14 @@
-package org.firstinspires.ftc.teamcode.Tolerance;
+package org.firstinspires.ftc.teamcode.UnnamedRobot;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.Hardware.HardwareComponent;
 import org.firstinspires.ftc.teamcode.Hardware.Motor.DrivetrainMotor;
-import org.firstinspires.ftc.teamcode.Hardware.Motor.Motor;
 import org.firstinspires.ftc.teamcode.Hardware.Motor.MotorConfiguration;
 import org.firstinspires.ftc.teamcode.Hardware.Motor.MotorType;
-import org.firstinspires.ftc.teamcode.Hardware.Servo;
 import org.firstinspires.ftc.teamcode.Hardware.USBWebcam;
 import org.firstinspires.ftc.teamcode.Libraries.IMU;
 import org.firstinspires.ftc.teamcode.RobotManager.Robot;
-
-import static org.firstinspires.ftc.teamcode.Hardware.ComponentArea.*;
 
 public class Configurator {
 
@@ -25,25 +21,11 @@ public class Configurator {
 
         HardwareComponent[] driveTrainMotors = getDriveTrainMotors(robot);
 
-        Motor m = new Motor(robot, "CLM", CLAW, true);
-        m.get().setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-       Motor shooter = new Motor(robot, "SHM", SHOOTER, true);
-       shooter.setFlipped(true);
-
         return(new HardwareComponent[]{
                 driveTrainMotors[0],
                 driveTrainMotors[1],
                 driveTrainMotors[2],
                 driveTrainMotors[3],
-                new Motor(robot, "INM", INTAKE, false).setFlipped(true),
-                new Motor(robot, "INM2", INTAKE, false),
-                shooter,
-                m,
-                new Servo(robot, "CLS", CLAW),
-                new Servo(robot, "CLS2", CLAW),
-                new Servo(robot, "SHS", SHOOTER),
-                new Servo(robot, "CS", CAMERA),
                 new IMU(robot, "IMU"),
                 new USBWebcam(robot, "Webcam"),
         });
@@ -52,7 +34,7 @@ public class Configurator {
     public static HardwareComponent[] getDriveTrainMotors(Robot robot){
 
         MotorConfiguration MC = new MotorConfiguration(
-                MotorType.NEVEREST_ORBITAL,
+                MotorType.GOBUILDA_YELLOWJACKET,
                 true,
                 2.9528,
                 1);
