@@ -2,8 +2,10 @@ package org.firstinspires.ftc.teamcode.UnnamedRobot;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+import org.firstinspires.ftc.teamcode.Hardware.ComponentArea;
 import org.firstinspires.ftc.teamcode.Hardware.HardwareComponent;
 import org.firstinspires.ftc.teamcode.Hardware.Motor.DrivetrainMotor;
+import org.firstinspires.ftc.teamcode.Hardware.Motor.Motor;
 import org.firstinspires.ftc.teamcode.Hardware.Motor.MotorConfiguration;
 import org.firstinspires.ftc.teamcode.Hardware.Motor.MotorType;
 import org.firstinspires.ftc.teamcode.Hardware.USBWebcam;
@@ -28,6 +30,7 @@ public class Configurator {
                 driveTrainMotors[3],
                 new IMU(robot, "IMU"),
                 new USBWebcam(robot, "Webcam"),
+                new Motor(robot, "SMT", ComponentArea.SPINNY_DUCKY, false),
         });
     }
 

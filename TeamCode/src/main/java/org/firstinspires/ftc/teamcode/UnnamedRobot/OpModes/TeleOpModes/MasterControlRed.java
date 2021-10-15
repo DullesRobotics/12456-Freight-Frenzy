@@ -5,20 +5,22 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.RobotManager.MecanumDriveTrain;
 import org.firstinspires.ftc.teamcode.UnnamedRobot.Configurator;
+import org.firstinspires.ftc.teamcode.UnnamedRobot.Functions;
 
 @TeleOp
-public class MasterControl extends LinearOpMode {
+public class MasterControlRed extends LinearOpMode {
 
     private MecanumDriveTrain robot;
 
     @Override
     public void runOpMode() throws InterruptedException {
         robot = new MecanumDriveTrain(this);
-        robot.addHardware(Configurator.getDriveTrainMotors(robot));
+        robot.addHardware(Configurator.getHardware(robot));
 
         waitForStart();
 
         robot.driveWithController(robot.ctrl1());
+        Functions.carousel(robot, robot.ctrl2(),true);
 
         while (opModeIsActive())
             robot.getLogger().updateLog();
