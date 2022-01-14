@@ -1,10 +1,10 @@
-package org.firstinspires.ftc.teamcode.UnnamedRobot.OpModes.TeleOpModes;
+package org.firstinspires.ftc.teamcode.Shogun.OpModes.TeleOpModes;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.RobotManager.StandardDriveTrain;
-import org.firstinspires.ftc.teamcode.UnnamedRobot.Configurator;
+import org.firstinspires.ftc.teamcode.Shogun.Configurator;
 
 @TeleOp
 public class StandardDriveTest extends LinearOpMode {
@@ -14,7 +14,7 @@ public class StandardDriveTest extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         robot = new StandardDriveTrain(this);
-        robot.addHardware(Configurator.getDriveTrainMotors(robot));
+        robot.addHardware(Configurator.getHardware(robot));
 
         waitForStart();
 
