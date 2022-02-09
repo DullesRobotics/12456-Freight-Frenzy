@@ -29,7 +29,9 @@ public class Configurator {
                 driveTrainMotors[1],
                 //driveTrainMotors[2],
                 //driveTrainMotors[3],
-                //new Motor(robot, "COW", CENTER_OMNI, true),
+                new Motor(robot, "LIFT", LIFT, false),
+                new Motor(robot, "INL", INTAKE, false),
+                new Motor(robot, "INR", INTAKE, false),
                 new IMU(robot, "IMU"),
                 //new USBWebcam(robot, "Webcam"),
                 carouselMotor

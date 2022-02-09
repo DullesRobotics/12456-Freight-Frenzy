@@ -3,9 +3,8 @@ package org.firstinspires.ftc.teamcode.RobotManager;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Hardware.Controller;
-import org.firstinspires.ftc.teamcode.Hardware.Motor.DrivetrainMotor;
-import org.firstinspires.ftc.teamcode.Libraries.IMU;
 import org.firstinspires.ftc.teamcode.Libraries.PID;
+import org.firstinspires.ftc.teamcode.RobotManager.DriveTrain;
 
 import java.util.logging.Level;
 
@@ -36,41 +35,52 @@ public class StandardDriveTrain extends DriveTrain {
     public void driveWithController(Controller ctrl){
         getLogger().log(Level.INFO, "Beginning drive with controller, standard");
         addThread(new Thread(() -> {
-            double currentSpeed;
-            while(op().opModeIsActive()){
-                /* linear equation to calculate speed based on right trigger's position */
-                currentSpeed = ctrl.rightTrigger() > 0 || ctrl.leftTrigger() > 0 ? precisionSpeed : speed;
-                getLogger().putData("Motor Speed", currentSpeed);
-                setSidedDrivePower(-1 * currentSpeed * ctrl.leftY(), -1 * currentSpeed * ctrl.rightY());
+            double flmPower, frmPower, blmPower, brmPower, currentSpeed = 0, maxSpeed;
+            while(op().opModeIsActive()) {
+                maxSpeed = ctrl.rightBumper() || ctrl.leftBumper() ? precisionSpeed : speed;
+                if (currentSpeed < maxSpeed)
+                    currentSpeed += maxSpeed / 500;
+                if (maxSpeed < currentSpeed)
+                    currentSpeed = maxSpeed;
+                getLogger().putData("Joystick Speed", currentSpeed);
+
+                flmPower = -ctrl.leftY();// + ctrl.leftTrigger() - ctrl.rightTrigger();
+                // blmPower = ctrl.leftY() - ctrl.leftTrigger() + ctrl.rightTrigger();
+                frmPower = ctrl.rightY();// - ctrl.leftTrigger() + ctrl.rightTrigger();
+                // brmPower = ctrl.rightY() + ctrl.leftTrigger() - ctrl.rightTrigger();
+
+//                getLogger().putData("Power (FL, FR, BL, BR)", getMotor("FLM").get().getPower() + ", " + getMotor("FRM").get().getPower() + ", " + getMotor("BLM").get().getPower() + ", " + getMotor("BRM").get().getPower());
+//                getLogger().putData("Velocity (FL, FR, BL, BR)", getMotor("FLM").getEncoded().getVelocity() + ", " + getMotor("FRM").getEncoded().getVelocity() + ", " + getMotor("BLM").getEncoded().getVelocity() + ", " + getMotor("BRM").getEncoded().getVelocity());
+                setSidedDrivePower(currentSpeed * flmPower, currentSpeed * frmPower);
             }
         }), true);
     }
-
-    /**
-     * Moves the robot for a certain amount of time
-     * @param millis The amount of milliseconds to move the robot
-     * @param direction Direction to go
-     */
-    public void autoDriveTimed(long millis, Direction direction){
-        if(direction == null) direction = Direction.FORWARD;
-
-        getLogger().log(Level.INFO, "Moving ( direction = " + direction.toString() + " ) for " + millis + " milliseconds.");
-        long time = System.currentTimeMillis() + millis;
-        while(op().opModeIsActive() && time >= System.currentTimeMillis()) {
-            getLogger().putData("Time Left", time - System.currentTimeMillis());
-
-            double leftPower = speed, rightPower = speed;
-            switch(direction) {
-                case LEFT: leftPower = -speed; rightPower = speed; break;
-                case RIGHT: leftPower = speed; rightPower = -speed; break;
-            }
-
-            setSidedDrivePower(leftPower, rightPower);
-        }
-        setUniformDrivePower(0);
-        getLogger().removeData("Time Left");
-        getLogger().log(Level.INFO, "Done moving.");
-    }
+//
+//    /**
+//     * Moves the robot for a certain amount of time
+//     * @param millis The amount of milliseconds to move the robot
+//     * @param direction Direction to go
+//     */
+//    public void autoDriveTimed(long millis, Direction direction){
+//        if(direction == null) direction = Direction.FORWARD;
+//
+//        getLogger().log(Level.INFO, "Moving ( direction = " + direction.toString() + " ) for " + millis + " milliseconds.");
+//        long time = System.currentTimeMillis() + millis;
+//        while(op().opModeIsActive() && time >= System.currentTimeMillis()) {
+//            getLogger().putData("Time Left", time - System.currentTimeMillis());
+//
+//            double leftPower = speed, rightPower = speed;
+//            switch(direction) {
+//                case LEFT: leftPower = -speed; rightPower = speed; break;
+//                case RIGHT: leftPower = speed; rightPower = -speed; break;
+//            }
+//
+//            setSidedDrivePower(leftPower, rightPower);
+//        }
+//        setUniformDrivePower(0);
+//        getLogger().removeData("Time Left");
+//        getLogger().log(Level.INFO, "Done moving.");
+//    }
 
 //    /**
 //     * Moves robot forward using a set time and a PID

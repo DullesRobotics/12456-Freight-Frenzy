@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.RobotManager.MecanumDriveTrain;
 import org.firstinspires.ftc.teamcode.Shogun.Configurator;
+import org.firstinspires.ftc.teamcode.Shogun.ControlCenterTeleOp;
 
 @TeleOp
 public class MecDriveTest extends LinearOpMode {
@@ -19,6 +20,8 @@ public class MecDriveTest extends LinearOpMode {
         waitForStart();
 
         robot.driveWithController(robot.ctrl1());
+
+        ControlCenterTeleOp.carouselSpin(robot, robot.ctrl1(), true);
 
         while (opModeIsActive())
             robot.getLogger().updateLog();

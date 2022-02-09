@@ -13,11 +13,11 @@ public class DrivetrainMotor extends Motor {
         this.motorConfiguration = motorConfiguration;
         this.drivetrainPosition = drivetrainPosition;
 
-        switch (drivetrainPosition) {
-            case FRM:
-            case BRM:
-                setFlipped(true);
-        }
+//        switch (drivetrainPosition) {
+//            case FRM:
+//            case BRM:
+//                setFlipped(true);
+//        }
 
     }
 
