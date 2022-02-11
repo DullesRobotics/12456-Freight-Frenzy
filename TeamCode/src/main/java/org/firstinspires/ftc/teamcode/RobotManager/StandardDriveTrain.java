@@ -35,22 +35,24 @@ public class StandardDriveTrain extends DriveTrain {
     public void driveWithController(Controller ctrl){
         getLogger().log(Level.INFO, "Beginning drive with controller, standard");
         addThread(new Thread(() -> {
-            double flmPower, frmPower, blmPower, brmPower, currentSpeed = 0, maxSpeed;
+            double flmPower, frmPower, currentSpeed = 0, maxSpeed;
             while(op().opModeIsActive()) {
-                maxSpeed = ctrl.rightBumper() || ctrl.leftBumper() ? precisionSpeed : speed;
+                int numBumpersActive = (ctrl.rightBumper() ? 1 : 0) + (ctrl.leftBumper() ? 1 : 0);
+                switch(numBumpersActive){
+                    case 1: maxSpeed = precisionSpeed; break;
+                    case 2: maxSpeed = ultraPSpeed; break;
+                    default:
+                    case 0: maxSpeed = speed; break;
+                }
+
                 if (currentSpeed < maxSpeed)
                     currentSpeed += maxSpeed / 500;
                 if (maxSpeed < currentSpeed)
                     currentSpeed = maxSpeed;
                 getLogger().putData("Joystick Speed", currentSpeed);
 
-                flmPower = -ctrl.leftY();// + ctrl.leftTrigger() - ctrl.rightTrigger();
-                // blmPower = ctrl.leftY() - ctrl.leftTrigger() + ctrl.rightTrigger();
-                frmPower = ctrl.rightY();// - ctrl.leftTrigger() + ctrl.rightTrigger();
-                // brmPower = ctrl.rightY() + ctrl.leftTrigger() - ctrl.rightTrigger();
-
-//                getLogger().putData("Power (FL, FR, BL, BR)", getMotor("FLM").get().getPower() + ", " + getMotor("FRM").get().getPower() + ", " + getMotor("BLM").get().getPower() + ", " + getMotor("BRM").get().getPower());
-//                getLogger().putData("Velocity (FL, FR, BL, BR)", getMotor("FLM").getEncoded().getVelocity() + ", " + getMotor("FRM").getEncoded().getVelocity() + ", " + getMotor("BLM").getEncoded().getVelocity() + ", " + getMotor("BRM").getEncoded().getVelocity());
+                flmPower = -ctrl.rightY();
+                frmPower = ctrl.leftY();
                 setSidedDrivePower(currentSpeed * flmPower, currentSpeed * frmPower);
             }
         }), true);

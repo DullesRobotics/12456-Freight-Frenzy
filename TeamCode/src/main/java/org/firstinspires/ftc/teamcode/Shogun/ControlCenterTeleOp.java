@@ -17,7 +17,7 @@ public class ControlCenterTeleOp {
             Motor liftMotor = r.getMotor("LIFT");
             while(r.op().opModeIsActive()){
                 if(ctrl.leftTrigger() > 0){ //DOWN
-                    liftMotor.get().setPower(ctrl.leftTrigger() / 3);
+                    liftMotor.get().setPower((ctrl.leftTrigger() * 2 ) / 3);
                 } else if(ctrl.rightTrigger() > 0) { //UP
                     liftMotor.get().setPower(-ctrl.rightTrigger());
                 } else {
