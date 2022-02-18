@@ -17,7 +17,7 @@ public class ControlCenterTeleOp {
             Motor liftMotor = r.getMotor("LIFT");
             while(r.op().opModeIsActive()){
                 if(ctrl.leftTrigger() > 0){ //DOWN
-                    liftMotor.get().setPower((ctrl.leftTrigger() * 2 ) / 3);
+                    liftMotor.get().setPower(ctrl.leftTrigger() / 2);
                 } else if(ctrl.rightTrigger() > 0) { //UP
                     liftMotor.get().setPower(-ctrl.rightTrigger());
                 } else {
@@ -29,39 +29,32 @@ public class ControlCenterTeleOp {
 
     public static void intakeInOut(Robot r, Controller ctrl){
         UUID uuid = r.addThread(new Thread(() -> {
-            Motor intakeRight = r.getMotor("INR");
-            Motor intakeLeft = r.getMotor("INL");
+            Motor intakeRight = r.getMotor("INR"), intakeLeft = r.getMotor("INL");
             intakeLeft.setFlipped(true);
-            boolean goingForward = false;
-            boolean on = false;
-            boolean currentlyPressed = false;
+            boolean goingForward = false, on = false, currentlyPressed = false;
             while(r.op().opModeIsActive()){
-
-                //r.getLogger().log(Level.INFO, "on: " + on + ", forward: " + goingForward + ", pressed: " + currentlyPressed);
-
                 if(ctrl.buttonUp() && !currentlyPressed){
-                    if(goingForward){
+                    if(goingForward && on)
                         on = false;
-                    } else {
+                    else {
                         on = true;
                         goingForward = true;
                     }
                     currentlyPressed = true;
                 } else if(ctrl.buttonDown() && !currentlyPressed){
-                    if(!goingForward){
+                    if(!goingForward && on)
                         on = false;
-                    } else {
+                    else {
                         on = true;
                         goingForward = false;
                     }
                     currentlyPressed = true;
                 }
 
-                if(currentlyPressed && !ctrl.buttonDown() && !ctrl.buttonUp()){
+                if(currentlyPressed && !ctrl.buttonDown() && !ctrl.buttonUp())
                     currentlyPressed = false;
-                }
 
-                if(on){
+                if(on)
                     if(goingForward){
                         intakeRight.get().setPower(0.75);
                         intakeLeft.get().setPower(0.75);
@@ -69,7 +62,7 @@ public class ControlCenterTeleOp {
                         intakeRight.get().setPower(-0.75);
                         intakeLeft.get().setPower(-0.75);
                     }
-                } else {
+                else {
                     intakeRight.get().setPower(0);
                     intakeLeft.get().setPower(0);
                 }

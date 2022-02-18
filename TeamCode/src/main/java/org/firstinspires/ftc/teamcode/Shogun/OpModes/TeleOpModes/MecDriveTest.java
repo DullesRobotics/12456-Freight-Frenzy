@@ -21,8 +21,6 @@ public class MecDriveTest extends LinearOpMode {
 
         robot.driveWithController(robot.ctrl1());
 
-        ControlCenterTeleOp.carouselSpin(robot, robot.ctrl1(), true);
-
         while (opModeIsActive())
             robot.getLogger().updateLog();
 
