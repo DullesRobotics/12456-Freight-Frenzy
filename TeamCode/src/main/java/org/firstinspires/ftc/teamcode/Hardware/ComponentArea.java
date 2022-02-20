@@ -6,6 +6,7 @@ public enum ComponentArea {
     CENTER_OMNI,
     LIFT,
     INTAKE,
+    OUTTAKE,
     SHOOTER,
     CLAW,
     IMU,
