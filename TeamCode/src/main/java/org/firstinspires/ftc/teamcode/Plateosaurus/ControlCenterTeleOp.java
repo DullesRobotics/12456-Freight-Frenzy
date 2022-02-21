@@ -1,13 +1,11 @@
-package org.firstinspires.ftc.teamcode.Shogun;
+package org.firstinspires.ftc.teamcode.Plateosaurus;
 
-import org.firstinspires.ftc.teamcode.Hardware.ComponentArea;
 import org.firstinspires.ftc.teamcode.Hardware.Controller;
 import org.firstinspires.ftc.teamcode.Hardware.Motor.Motor;
 import org.firstinspires.ftc.teamcode.Hardware.Servo;
 import org.firstinspires.ftc.teamcode.RobotManager.Robot;
 
 import java.util.UUID;
-import java.util.logging.Level;
 
 public class ControlCenterTeleOp {
 

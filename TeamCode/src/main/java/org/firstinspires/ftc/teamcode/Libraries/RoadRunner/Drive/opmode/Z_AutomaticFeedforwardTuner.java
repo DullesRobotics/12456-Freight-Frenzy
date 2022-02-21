@@ -17,9 +17,9 @@ import org.firstinspires.ftc.teamcode.Libraries.RoadRunner.Util.RegressionUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.firstinspires.ftc.teamcode.Shogun.RoadRunnerDriveConstants.MAX_RPM;
-import static org.firstinspires.ftc.teamcode.Shogun.RoadRunnerDriveConstants.RUN_USING_ENCODER;
-import static org.firstinspires.ftc.teamcode.Shogun.RoadRunnerDriveConstants.rpmToVelocity;
+import static org.firstinspires.ftc.teamcode.Plateosaurus.RoadRunnerDriveConstants.MAX_RPM;
+import static org.firstinspires.ftc.teamcode.Plateosaurus.RoadRunnerDriveConstants.RUN_USING_ENCODER;
+import static org.firstinspires.ftc.teamcode.Plateosaurus.RoadRunnerDriveConstants.rpmToVelocity;
 
 /*
  * Op mode for computing kV, kStatic, and kA from various drive routines. For the curious, here's an

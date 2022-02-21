@@ -1,13 +1,10 @@
-package org.firstinspires.ftc.teamcode.Shogun;
+package org.firstinspires.ftc.teamcode.Plateosaurus;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.Libraries.RoadRunner.Drive.SampleTankDrive;
 import org.firstinspires.ftc.teamcode.RobotManager.MecanumDriveTrain;
 import org.firstinspires.ftc.teamcode.RobotManager.StandardDriveTrain;
-
-import java.text.FieldPosition;
 
 @Config
 public class AutonFunctions {
@@ -35,6 +32,14 @@ public class AutonFunctions {
     public enum FieldPosition{
         NEAR_CAROUSEL, NOT_NEAR
     }
+
+    public static void flipBucket(boolean up) {
+        if (up)
+            mainFrame.getServo("OT").get().setPosition(7);
+        else
+            mainFrame.getServo("OT").get().setPosition(0);
+        // im cool and you are not - Mithilya
+        }
 }
 
 

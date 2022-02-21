@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Shogun.OpenCVPipelines;
+package org.firstinspires.ftc.teamcode.Plateosaurus.OpenCVPipelines;
 
 import org.firstinspires.ftc.teamcode.Libraries.AddOns.Pipeline;
 import org.firstinspires.ftc.teamcode.Libraries.Logger;

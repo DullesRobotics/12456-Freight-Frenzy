@@ -1,11 +1,11 @@
-package org.firstinspires.ftc.teamcode.Shogun.OpModes.TeleOpModes;
+package org.firstinspires.ftc.teamcode.Plateosaurus.OpModes.TeleOpModes;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.RobotManager.StandardDriveTrain;
-import org.firstinspires.ftc.teamcode.Shogun.Configurator;
-import org.firstinspires.ftc.teamcode.Shogun.ControlCenterTeleOp;
+import org.firstinspires.ftc.teamcode.Plateosaurus.Configurator;
+import org.firstinspires.ftc.teamcode.Plateosaurus.ControlCenterTeleOp;
 
 @TeleOp
 public class StandardDriveTest extends LinearOpMode {

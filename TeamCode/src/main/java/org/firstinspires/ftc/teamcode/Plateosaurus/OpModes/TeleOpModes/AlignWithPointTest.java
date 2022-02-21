@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Shogun.OpModes.TeleOpModes;
+package org.firstinspires.ftc.teamcode.Plateosaurus.OpModes.TeleOpModes;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.canvas.Canvas;
@@ -13,7 +13,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.Libraries.RoadRunner.Drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.Libraries.RoadRunner.Util.DashboardUtil;
-import org.firstinspires.ftc.teamcode.Shogun.RoadRunnerDriveConstants;
+import org.firstinspires.ftc.teamcode.Plateosaurus.RoadRunnerDriveConstants;
 
 
 /**

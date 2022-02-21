@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Shogun.OpModes.AutonomousOpModes;
+package org.firstinspires.ftc.teamcode.Plateosaurus.OpModes.AutonomousOpModes;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.Hardware.USBWebcam;
 import org.firstinspires.ftc.teamcode.Libraries.AddOns.AddOnType;
 import org.firstinspires.ftc.teamcode.Libraries.AddOns.EasyOpenCV;
 import org.firstinspires.ftc.teamcode.RobotManager.MecanumDriveTrain;
-import org.firstinspires.ftc.teamcode.Shogun.OpenCVPipelines.GreenScanningPipeline;
+import org.firstinspires.ftc.teamcode.Plateosaurus.OpenCVPipelines.GreenScanningPipeline;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 
 @Autonomous
