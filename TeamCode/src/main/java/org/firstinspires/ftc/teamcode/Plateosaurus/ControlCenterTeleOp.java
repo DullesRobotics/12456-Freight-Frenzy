@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.Plateosaurus;
 
+import com.acmerobotics.dashboard.config.Config;
+
 import org.firstinspires.ftc.teamcode.Hardware.Controller;
 import org.firstinspires.ftc.teamcode.Hardware.Motor.Motor;
 import org.firstinspires.ftc.teamcode.Hardware.Servo;
@@ -7,9 +9,11 @@ import org.firstinspires.ftc.teamcode.RobotManager.Robot;
 
 import java.util.UUID;
 
+@Config
 public class ControlCenterTeleOp {
 
     static final double motorCarouselSpeed = 1;
+    static double bucketPosNormal = 0, bucketPosExtended = 0.45;
 
     public static void intakeUpDown(Robot r, Controller ctrl){
         UUID uuid = r.addThread(new Thread(() -> {
@@ -73,12 +77,12 @@ public class ControlCenterTeleOp {
     public static void bucketDrop(Robot r, Controller ctrl){
         r.addThread(new Thread(() -> {
             Servo outtakeServo = r.getServo("OT");
-            outtakeServo.get().setPosition(0);
+            outtakeServo.get().setPosition(bucketPosNormal);
             while (r.op().opModeIsActive()) {
                 if(ctrl.rightBumper())
-                    outtakeServo.get().setPosition(1);
+                    outtakeServo.get().setPosition(bucketPosExtended);
                 else
-                    outtakeServo.get().setPosition(0);
+                    outtakeServo.get().setPosition(bucketPosNormal);
             }
         }), true);
     }

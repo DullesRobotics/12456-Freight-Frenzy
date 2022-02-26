@@ -52,7 +52,7 @@ public class  MecanumDriveTrain extends StandardDriveTrain {
                 }
 
                 if(currentSpeed < maxSpeed)
-                    currentSpeed += maxSpeed / 500;
+                    currentSpeed += maxSpeed / 1000;
                 if(maxSpeed < currentSpeed)
                     currentSpeed = maxSpeed;
                 getLogger().putData("Joystick Speed", currentSpeed);
