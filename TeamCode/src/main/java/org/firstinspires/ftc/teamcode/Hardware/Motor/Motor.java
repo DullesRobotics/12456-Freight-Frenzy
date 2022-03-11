@@ -29,9 +29,9 @@ public class Motor extends HardwareComponent {
         super(r, id, componentArea);
         this.isEncoded = isEncoded;
         try {
-            setComponent(r.op().hardwareMap.get(isEncoded ? DcMotorEx.class : DcMotor.class, id));
-            if(isEncoded)
-                get().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            setComponent(r.op().hardwareMap.get(/*isEncoded ? DcMotorEx.class : */DcMotor.class, id));
+//            if(isEncoded)
+//                get().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         } catch (Exception e) {
             r.getLogger().log(Level.SEVERE, "Error Adding Motor " + id, e.toString());
             r.op().requestOpModeStop();
@@ -45,7 +45,7 @@ public class Motor extends HardwareComponent {
 
     @Nullable
     public DcMotorEx getEncoded() {
-        return isEncoded() ? (DcMotorEx) component : null;
+        return null; //isEncoded() ? (DcMotorEx) component : null;
     }
 
     /**

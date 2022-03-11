@@ -65,18 +65,18 @@ public class Controller {
 
     public float leftTrigger() {
         float preReading = autoMode ? left_trigger : g.left_trigger;
-        float reading = (float) (Math.pow(g.left_trigger, 2));
-        if (preReading < 0)
-            reading *= -1;
-        return reading;
+//        float reading = (float) (Math.pow(g.left_trigger, 2));
+//        if (preReading < 0)
+//            reading *= -1;
+        return preReading; //reading;
     }
 
     public float rightTrigger() {
         float preReading = autoMode ? right_trigger : g.right_trigger;
-        float reading = (float) (Math.pow(g.right_trigger, 2));
-        if (preReading < 0)
-            reading *= -1;
-        return reading;
+//        float reading = (float) (Math.pow(g.right_trigger, 2));
+//        if (preReading < 0)
+//            reading *= -1;
+        return preReading; //reading;
     }
 
     public float leftX() {

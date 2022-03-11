@@ -23,6 +23,7 @@ public class MasterTeleOp extends LinearOpMode {
         ControlCenterTeleOp.intakeUpDown(baseRobot, baseRobot.ctrl2());
         ControlCenterTeleOp.intakeInOut(baseRobot, baseRobot.ctrl2());
         ControlCenterTeleOp.bucketDrop(baseRobot, baseRobot.ctrl2());
+        ControlCenterTeleOp.cappingArm(baseRobot, baseRobot.ctrl2());
 
         while (opModeIsActive())
             baseRobot.getLogger().updateLog();

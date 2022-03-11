@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.Plateosaurus.OpModes.AutonomousOpModes;
 
-import static org.firstinspires.ftc.teamcode.Plateosaurus.AutonFunctions.FieldPosition.NEAR_CAROUSEL;
+import static org.firstinspires.ftc.teamcode.Plateosaurus.AutonFunctions.FieldPosition.CAROUSEL;
 import static org.firstinspires.ftc.teamcode.Plateosaurus.AutonFunctions.TeamColor.RED;
 
 import com.acmerobotics.dashboard.config.Config;
@@ -14,6 +14,6 @@ import org.firstinspires.ftc.teamcode.Plateosaurus.AutonFunctions;
 public class AutonRedCarousel extends LinearOpMode {
     @Override
     public void runOpMode()throws InterruptedException{
-        AutonFunctions.start(this, RED, NEAR_CAROUSEL);
+        AutonFunctions.startNew(this, RED, CAROUSEL);
     }
 }

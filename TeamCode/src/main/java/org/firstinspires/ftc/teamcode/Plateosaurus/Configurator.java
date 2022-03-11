@@ -2,12 +2,14 @@ package org.firstinspires.ftc.teamcode.Plateosaurus;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+import org.firstinspires.ftc.teamcode.Hardware.ColorSensor;
 import org.firstinspires.ftc.teamcode.Hardware.HardwareComponent;
 import org.firstinspires.ftc.teamcode.Hardware.Motor.DrivetrainMotor;
 import org.firstinspires.ftc.teamcode.Hardware.Motor.Motor;
 import org.firstinspires.ftc.teamcode.Hardware.Motor.MotorConfiguration;
 import org.firstinspires.ftc.teamcode.Hardware.Motor.MotorType;
 import org.firstinspires.ftc.teamcode.Hardware.Servo;
+import org.firstinspires.ftc.teamcode.Hardware.USBWebcam;
 import org.firstinspires.ftc.teamcode.Libraries.IMU;
 import org.firstinspires.ftc.teamcode.RobotManager.Robot;
 
@@ -34,7 +36,9 @@ public class Configurator {
                 new Motor(robot, "IN", INTAKE, false),
                 new IMU(robot, "IMU"),
                 new Servo(robot, "OT", OUTTAKE),
-                //new USBWebcam(robot, "Webcam"),
+                new Servo(robot, "ARM", CLAW),
+                new USBWebcam(robot, "Webcam"),
+              //  new ColorSensor(robot, "CS", INTAKE),
                 carouselMotor
         });
     }
@@ -47,15 +51,10 @@ public class Configurator {
                 2.9528,
                 1);
 
-        DrivetrainMotor motorFrontLeft = new DrivetrainMotor(robot, "FLM", MC, true, MotorType.DrivetrainPosition.FLM);
-        DrivetrainMotor motorFrontRight = new DrivetrainMotor(robot, "FRM", MC, true, MotorType.DrivetrainPosition.FRM);
-        DrivetrainMotor motorBackLeft = new DrivetrainMotor(robot, "BLM", MC, true, MotorType.DrivetrainPosition.BLM);
-        DrivetrainMotor motorBackRight = new DrivetrainMotor(robot, "BRM", MC, true, MotorType.DrivetrainPosition.BRM);
-
-        motorFrontLeft.get().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorFrontRight.get().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorBackLeft.get().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorBackRight.get().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        DrivetrainMotor motorFrontLeft = new DrivetrainMotor(robot, "FLM", MC, false, MotorType.DrivetrainPosition.FLM);
+        DrivetrainMotor motorFrontRight = new DrivetrainMotor(robot, "FRM", MC, false, MotorType.DrivetrainPosition.FRM);
+        DrivetrainMotor motorBackLeft = new DrivetrainMotor(robot, "BLM", MC, false, MotorType.DrivetrainPosition.BLM);
+        DrivetrainMotor motorBackRight = new DrivetrainMotor(robot, "BRM", MC, false, MotorType.DrivetrainPosition.BRM);
 
         return(new HardwareComponent[]{
                 motorFrontLeft,

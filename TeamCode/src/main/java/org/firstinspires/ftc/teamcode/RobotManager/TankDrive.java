@@ -52,7 +52,7 @@ public class TankDrive extends StandardDriveTrain {
                 if(getCenterOmni() != null)
                     getCenterOmni().get().setPower(centerSpeed);
 
-                getLogger().putData("Velocity (FL, FR, BL, BR)", getMotor("FLM").getEncoded().getVelocity() + ", " + getMotor("FRM").getEncoded().getVelocity() + ", " + getMotor("BLM").getEncoded().getVelocity() + ", " + getMotor("BRM").getEncoded().getVelocity());
+           //     getLogger().putData("Velocity (FL, FR, BL, BR)", getMotor("FLM").getEncoded().getVelocity() + ", " + getMotor("FRM").getEncoded().getVelocity() + ", " + getMotor("BLM").getEncoded().getVelocity() + ", " + getMotor("BRM").getEncoded().getVelocity());
 
             }
         }), true, () -> getLogger().clearData());
