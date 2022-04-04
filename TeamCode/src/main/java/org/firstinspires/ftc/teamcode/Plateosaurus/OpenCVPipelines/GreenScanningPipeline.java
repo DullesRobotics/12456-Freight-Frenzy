@@ -44,6 +44,8 @@ public class GreenScanningPipeline extends OpenCvPipeline implements Pipeline {
         int avgNumZone1, avgNumZone2, avgNumZone3;
         int avgDenZone1, avgDenZone2, avgDenZone3;
 
+        //this is a test change
+
         // do double for loop, one for rows, one for columns
         // loop through every pixel and get green value: input.get(0,1)[1];
         // increment a number for the avg denomniator for that pixel's zone,
