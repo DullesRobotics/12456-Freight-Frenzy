@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Hardware.Controller;
 import org.firstinspires.ftc.teamcode.Hardware.Motor.DrivetrainMotor;
+import org.firstinspires.ftc.teamcode.Hardware.Motor.MotorType;
 import org.firstinspires.ftc.teamcode.Libraries.IMU;
 import org.firstinspires.ftc.teamcode.Libraries.PID;
 
@@ -120,6 +121,20 @@ public class  MecanumDriveTrain extends StandardDriveTrain {
         setUniformDrivePower(0);
         getLogger().clearData();
         getLogger().log(Level.INFO, "Finished Strafing, Timed");
+    }
+
+    public void autoRotateTimed(long millis, boolean goLeft){
+        getLogger().log(Level.INFO, "Rotating, Timed");
+        long time = System.currentTimeMillis() + millis;
+        double tempSpeed = speed;
+        while(op().opModeIsActive() && time > System.currentTimeMillis()){
+            if(goLeft) tempSpeed *= -1;
+            setSidedDrivePower(tempSpeed, -tempSpeed);
+            getLogger().putData("Speed (FL, BL, FR, BR)", "(" + tempSpeed + ", " + -tempSpeed + ", " + tempSpeed + ", " + -tempSpeed + ")");
+        }
+        setUniformDrivePower(0);
+        getLogger().clearData();
+        getLogger().log(Level.INFO, "Finished Rotating, Timed");
     }
 
 //    /**

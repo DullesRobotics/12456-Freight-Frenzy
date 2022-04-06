@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Hardware.ComponentArea;
 import org.firstinspires.ftc.teamcode.Hardware.Motor.Motor;
+import org.firstinspires.ftc.teamcode.Hardware.Servo;
 import org.firstinspires.ftc.teamcode.Libraries.RoadRunner.Drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.RobotManager.MecanumDriveTrain;
 
@@ -121,8 +122,37 @@ public class AutonFunctions {
             carousel.get().setPower(isOn ? clockwise ? 1 : -1 : 0);
     }
 
+    // Strafe towards capstone(timed)
+    // rotate 90 degrees counterclockwise
+    // grab claw with capstone
+    // rotate 90 degrees clockwise
+    // drop claw based on position
+    public static void grabCapstone (FieldPosition pos){
+        Motor lift = mainFrame.getMotor("LIFT");
+        Servo bucket = mainFrame.getServo("OT");
+        boolean isLeft = pos == FieldPosition.WAREHOUSE;
+        mainFrame.autoStrafeTimed(500, isLeft);
+        mainFrame.autoRotateTimed(250,isLeft);
+        lift.get().setPower(1);
+        mainFrame.autonWait(250);
+        bucket.get().setPosition(0.45);
+        mainFrame.autonWait(800);
+        bucket.get().setPosition(0);
+        lift.get().setPower(-1);
+        mainFrame.autonWait(950);
+        //to warehouse
+        mainFrame.autoRotateTimed(250,!isLeft);
+        mainFrame.setSidedDrivePower(0.5,0.5);
+        mainFrame.autonWait(1000);
+        mainFrame.setSidedDrivePower(0,0);
+    }
+
     public enum TeamColor{
         RED, BLUE
+    }
+
+    public enum Direction {
+        RIGHT, LEFT;
     }
 
     public enum FieldPosition{
