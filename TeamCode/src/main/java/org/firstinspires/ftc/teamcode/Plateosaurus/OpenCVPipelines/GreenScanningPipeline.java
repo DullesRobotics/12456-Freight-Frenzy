@@ -2,12 +2,15 @@ package org.firstinspires.ftc.teamcode.Plateosaurus.OpenCVPipelines;
 
 import com.acmerobotics.dashboard.config.Config;
 
+import org.firstinspires.ftc.teamcode.Libraries.AddOns.EasyOpenCV;
 import org.firstinspires.ftc.teamcode.Libraries.AddOns.Pipeline;
 import org.firstinspires.ftc.teamcode.Libraries.Logger;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
 import org.opencv.core.Point;
 import org.opencv.core.Rect;
+import org.opencv.core.Scalar;
+import org.opencv.imgproc.Imgproc;
 import org.openftc.easyopencv.OpenCvPipeline;
 
 import java.util.ArrayList;
@@ -34,28 +37,44 @@ public class GreenScanningPipeline extends OpenCvPipeline implements Pipeline {
 
     @Override
     public Mat processFrame(Mat input) {
-    currentZone = detectCapstone(input);
+        currentZone = detectCapstone(input);
+        Imgproc.rectangle(input, new Rect(new Point(currentZone.minX,0), new Point(currentZone.maxX, EasyOpenCV.VIEWPORT_HEIGHT)), new Scalar(124, 255, 0), 5);
         return input;
     }
 
     private Zone detectCapstone(Mat input) {
         Zone zone;
 
-        int avgNumZone1, avgNumZone2, avgNumZone3;
-        int avgDenZone1, avgDenZone2, avgDenZone3;
+        double[] numerators = new double[]{0,0,0};
+        double[] denominators = new double[]{0,0,0};
 
-        //this is a test change
+        for(int x = 0; x < EasyOpenCV.VIEWPORT_WIDTH-1; x+=2){
+            for(int y = (EasyOpenCV.VIEWPORT_HEIGHT/3) * 2; y < EasyOpenCV.VIEWPORT_HEIGHT-1; y+=2){
+                Zone currentZone = x < Zone.LEFT.maxX ? Zone.LEFT :
+                        x < Zone.MIDDLE.maxX ? Zone.MIDDLE : Zone.RIGHT;
+                denominators[currentZone.index]++;
 
-        // do double for loop, one for rows, one for columns
-        // loop through every pixel and get green value: input.get(0,1)[1];
-        // increment a number for the avg denomniator for that pixel's zone,
-        // and add the green value to another variable for the avg numerator for that pixrl's zone
-        // once you've done all the pixels do the avg division
+                // figure out if rgb is green
+                double[] rgb = input.get(y,x);
+                if(rgb[0] < 150 && rgb[1] > 180 && rgb[2] < 150)
+                    numerators[currentZone.index] ++;
+            }
+        }
 
-        // determine zone with highest avg and return it
+        double[] averages = new double[]{numerators[0] / denominators[0], numerators[1] / denominators[1], numerators[2] / denominators[2]};
+        System.out.println("avgs: " + averages[0] + " " + averages[1] + " " + averages[2]);
+        double highestAvg = Math.max(averages[0], Math.max(averages[1], averages[2]));
+        if(highestAvg == averages[0])
+            zone = Zone.LEFT;
+        else if(highestAvg == averages[1])
+            zone = Zone.MIDDLE;
+        else
+            zone = Zone.RIGHT;
 
         return zone;
     }
+
+    public void
 
 
     @Override
@@ -65,15 +84,16 @@ public class GreenScanningPipeline extends OpenCvPipeline implements Pipeline {
     }
 
     enum Zone {
-        LEFT(0, 106),
-        MIDDLE(107, 212),
-        RIGHT(213,320);
+        LEFT(0, EasyOpenCV.VIEWPORT_WIDTH / 3, 0),
+        MIDDLE(EasyOpenCV.VIEWPORT_WIDTH / 3 + 1, 2 * (EasyOpenCV.VIEWPORT_WIDTH / 3), 1),
+        RIGHT(2 * (EasyOpenCV.VIEWPORT_WIDTH / 3) + 1,EasyOpenCV.VIEWPORT_WIDTH, 2);
 
-        private int minX, maxX;
+        private int minX, maxX, index;
 
-        Zone (int minX, int maxX){
+        Zone (int minX, int maxX, int index){
             this.maxX = maxX;
             this.minX = minX;
+            this.index = index;
         }
     }
 }
