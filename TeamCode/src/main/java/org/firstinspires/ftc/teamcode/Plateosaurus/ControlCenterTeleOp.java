@@ -16,7 +16,7 @@ public class ControlCenterTeleOp {
     public static double motorCarouselSpeed = 1;
     public static double intakeSpeed = 0.8;
     public static double liftUpModifier = 0.4, liftDownModifier = -0.4, liftDefaultPower = 0.05;
-    public static double bucketPosNormal = 0, bucketPosExtended = 0.45, bucketPosExtendedMore = 0.52;
+    public static double bucketPosNormal = 0, bucketPosExtended = 0.6, bucketPosExtendedMore = 0.72;
     public static double armPosNormal = 0.5, armSpeed = 0.1;
 
     public static void cappingArm(Robot r, Controller ctrl){
