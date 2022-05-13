@@ -45,7 +45,7 @@ public class Motor extends HardwareComponent {
 
     @Nullable
     public DcMotorEx getEncoded() {
-        return null; //isEncoded() ? (DcMotorEx) component : null;
+        return isEncoded() ? (DcMotorEx) component : null;
     }
 
     /**

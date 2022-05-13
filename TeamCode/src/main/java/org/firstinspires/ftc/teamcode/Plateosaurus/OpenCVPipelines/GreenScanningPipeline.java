@@ -74,8 +74,6 @@ public class GreenScanningPipeline extends OpenCvPipeline implements Pipeline {
         return zone;
     }
 
-    public void
-
 
     @Override
     public void updateLog(Logger l) {

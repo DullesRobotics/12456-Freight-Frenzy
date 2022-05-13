@@ -13,11 +13,11 @@ import java.util.UUID;
 @Config
 public class ControlCenterTeleOp {
 
-    public static double motorCarouselSpeed = 1;
+    public static double motorCarouselSpeed = 0.8;
     public static double intakeSpeed = 0.8;
     public static double liftUpModifier = 0.4, liftDownModifier = -0.4, liftDefaultPower = 0.05;
-    public static double bucketPosNormal = 0, bucketPosExtended = 0.6, bucketPosExtendedMore = 0.72;
-    public static double armPosNormal = 0.5, armSpeed = 0.1;
+    public static double bucketPosNormal = 0, bucketPosExtended = 0.45, bucketPosExtendedMore = 0.55;
+    public static double armPosNormal = 0.5, armSpeed = 0.05;
 
     public static void cappingArm(Robot r, Controller ctrl){
         r.addThread(new Thread(() -> {
@@ -53,20 +53,8 @@ public class ControlCenterTeleOp {
     public static void intakeInOut(Robot r, Controller ctrl){
         r.addThread(new Thread(() -> {
             Motor intake = r.getMotor("IN");
-  //          ColorSensor cs =  r.getColorSensor("CS");
             boolean goingForward = false, on = false, currentlyPressed = false;
             while(r.op().opModeIsActive()){
-
-//                if(!currentlyPressed){
-//                   int red = cs.get().red(), grn = cs.get().green(), blu = cs.get().blue();
-//                   //white sphere
-//                   if(red > 200 && grn > 200 && blu > 200){
-//                       on = false;
-//                   } else if (red > 200 && grn > 200){
-//                       //yellow block
-//                       on = false;
-//                   }
-//                }
 
                 if(ctrl.buttonUp() && !currentlyPressed){
                     if(goingForward && on)
